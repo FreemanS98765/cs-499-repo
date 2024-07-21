@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
   --primary-color: #3e6837;
+  --primary-hover-color: #4a7d3f;
   --on-disabled: #8f8f8f;
   --surface: #f7fbf1;
   --inverse-surface: #e0e4da;
@@ -80,4 +81,9 @@ a {
   min-width: 175px;
   cursor: pointer;
   transform: translateY(36px);
+}
+
+.login-btn:hover {
+  background-color: var(--primary-hover-color);
+  color: white;
 }
