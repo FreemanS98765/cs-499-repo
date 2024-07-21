@@ -54,10 +54,11 @@
     <div class="col">
       <!-- Inventory List -->
       <div class="table-responsive">
-        <table mat-table [dataSource]="inventory" class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
+          
           <!-- Item Column -->
           <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef>Item</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">Item</th>
             <td mat-cell *matCellDef="let element">
               <span *ngIf="!element.isEditing">{{ element.name }}</span>
               <input
@@ -71,7 +72,7 @@
 
           <!-- SKU Column -->
           <ng-container matColumnDef="sku">
-            <th mat-header-cell *matHeaderCellDef>SKU</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sku">SKU</th>
             <td mat-cell *matCellDef="let element">
               <span *ngIf="!element.isEditing">{{ element.sku }}</span>
               <input
@@ -85,7 +86,7 @@
 
           <!-- Quantity Column -->
           <ng-container matColumnDef="quantity">
-            <th mat-header-cell *matHeaderCellDef>Quantity</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by quantity">Quantity</th>
             <td mat-cell *matCellDef="let element">
               <span *ngIf="!element.isEditing">{{ element.quantity }}</span>
               <input
