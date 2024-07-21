@@ -1,1 +1,74 @@
-<p>dashboard works!</p>
+<!-- Header -->
+<header class="header">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a href="#" class="navbar-brand">Inventory Listing</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbarNav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a routerLink="/inventory" class="nav-link active"
+              ><i class="bi bi-box pe-2"></i>Inventory</a
+            >
+          </li>
+          <li class="nav-item">
+            <a routerLink="/notifications" class="nav-link"
+              ><i class="bi bi-bell pe-2"></i>Notifications</a
+            >
+          </li>
+          <li class="nav-item">
+            <a routerLink="/logout" class="nav-link"
+              ><i class="bi bi-box-arrow-right pe-2"></i>Logout</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="container py-4">
+  <!-- Inventory List -->
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of inventory">
+          <td>{{ item.name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.price }}</td>
+          <td>
+            <button class="btn btn-outline-secondary">
+              Edit<i class="bi bi-pencil ps-2"></i>
+            </button>
+            <button class="btn btn-outline-secondary">
+              Delete<i class="bi bi-trash ps-2"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Floating Action Button -->
+  <button class="btn btn-success btn-floating" id="addbtn">
+    <i class="bi bi-plus"></i>
+  </button>
+</div>
