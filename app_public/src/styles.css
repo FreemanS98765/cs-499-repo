@@ -1,1 +1,89 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --primary-color: #3e6837;
+  --primary-hover-color: #4a7d3f;
+  --on-disabled: #8f8f8f;
+  --surface: #f7fbf1;
+  --inverse-surface: #e0e4da;
+
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #333;
+  background-color: var(--primary-color);
+}
+
+/* styles.css or styles.scss */
+body {
+  background: linear-gradient(to bottom, #3e6837 50%, #e0e4da 50%);
+  margin: 0;
+  height: 100vh;
+}
+
+h1 {
+  font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+}
+
+main {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: inherit;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.logo {
+  max-width: 9.2rem;
+}
+
+.login-wrap {
+  width: 100%;
+  max-width: 760px;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.login-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 0;
+  min-width: 175px;
+  cursor: pointer;
+  transform: translateY(36px);
+}
+
+.login-btn:hover {
+  background-color: var(--primary-hover-color);
+  color: white;
+}
