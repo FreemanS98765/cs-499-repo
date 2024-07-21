@@ -5,17 +5,20 @@ import { InventoryService } from '../services/inventory.service';
 import { InventoryItem } from '../models/inventory-item.model';
 import { CreateProductComponent } from '../create-product/create-product.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, MatButtonModule],
+  imports: [CommonModule, MatButtonModule, MatTableModule, MatIconModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
   host: { class: 'dashboard-view' },
 })
 export class DashboardComponent implements OnInit {
   inventory: InventoryItem[] = [];
+  displayedColumns: string[] = ['name', 'sku', 'quantity', 'actions'];
 
   constructor(
     private inventoryService: InventoryService,

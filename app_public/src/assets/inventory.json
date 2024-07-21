@@ -1,17 +1,17 @@
 [
   {
     "name": "Item 1",
-    "quantity": 10,
-    "price": 15.0
+    "sku": 15.0,
+    "quantity": 10
   },
   {
     "name": "Item 2",
-    "quantity": 5,
-    "price": 25.0
+    "sku": 25.0,
+    "quantity": 5
   },
   {
     "name": "Item 3",
-    "quantity": 20,
-    "price": 7.5
+    "sku": 7.5,
+    "quantity": 20
   }
 ]
