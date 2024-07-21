@@ -30,12 +30,13 @@ export class CreateProductComponent {
   ) {
     this.createProductForm = this.fb.group({
       name: [''],
-      price: [''],
-      description: ['']
+      sku: [''],
+      quantity: ['']
     });
   }
 
   onSubmit(): void {
+    // TODO - Implement product add when server is ready
     // Handle form submission
     console.log(this.createProductForm.value);
     this.dialogRef.close();
