@@ -7,6 +7,7 @@ import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angula
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   imports: [ReactiveFormsModule],
+  host: { 'class': 'login-wrap mt-5' }
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({});
