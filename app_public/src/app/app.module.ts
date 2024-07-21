@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -16,9 +17,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         BrowserModule,
         AppRoutingModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
     ],
-    providers: [],
+    providers: [
+        provideHttpClient(),
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
