@@ -61,8 +61,11 @@ export class DashboardComponent implements OnInit {
   }
 
   deleteItem(item: InventoryItem): void {
-    this.inventoryService.deleteInventoryItem(item.id).subscribe(() => {
-      this.loadInventory();
-    });
+    // TODO: Implement delete functionality when server is ready
+    // this.inventoryService.deleteInventoryItem(item.id).subscribe(() => {
+    //   this.loadInventory();
+    // });
+
+    console.log('Delete item:', item);
   }
 }
