@@ -3,4 +3,5 @@ export interface InventoryItem {
   name: string;
   sku: string;
   quantity: number;
+  isEditing?: boolean;
 }
