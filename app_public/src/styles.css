@@ -52,13 +52,26 @@ a {
   justify-content: center;
 }
 
+/* Button Styles */
 .btn-primary {
   background-color: var(--primary-color);
   color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover-color);
+  color: white;
+}
+
+.btn-primary-stroked {
+  background-color: white;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.btn-primary-stroked:hover {
+  background-color: var(--primary-hover-color);
+  color: white;
 }
 
 /* Login Styles */
