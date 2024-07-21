@@ -38,37 +38,48 @@
 </header>
 
 <div class="container py-4">
-  <!-- Inventory List -->
-  <div class="table-responsive">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Item</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th class="actions-column">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of inventory">
-          <td>{{ item.name }}</td>
-          <td>{{ item.sku }}</td>
-          <td>{{ item.quantity }}</td>
-          <td class="actions-column">
-            <button class="btn btn-outline-secondary">
-              Edit<i class="bi bi-pencil ps-2"></i>
-            </button>
-            <button class="btn btn-outline-secondary">
-              Delete<i class="bi bi-trash ps-2"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="row">
+    <div class="col">
+      <!-- Product Creation Button -->
+      <button
+        class="float-end mb-3"
+        mat-stroked-button
+        (click)="openCreateProductDialog()"
+      >
+        Add Product
+      </button>
+    </div>
   </div>
-
-  <!-- Floating Action Button -->
-  <button class="btn btn-success btn-floating" id="addbtn">
-    <i class="bi bi-plus"></i>
-  </button>
+  <div class="row">
+    <div class="col">
+      <!-- Inventory List -->
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th class="actions-column">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of inventory">
+              <td>{{ item.name }}</td>
+              <td>{{ item.sku }}</td>
+              <td>{{ item.quantity }}</td>
+              <td class="actions-column">
+                <button class="btn btn-outline-secondary">
+                  Edit<i class="bi bi-pencil ps-2"></i>
+                </button>
+                <button class="btn btn-outline-secondary">
+                  Delete<i class="bi bi-trash ps-2"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
