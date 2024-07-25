@@ -1,0 +1,20 @@
+.actions-column {
+  width: 200px;
+  white-space: nowrap;
+}
+
+.add-product-btn {
+  
+  width: 56px;
+  height: 56px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+  z-index: 100;
+}
+
+.fixed-bottom {
+    height: 60px;
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Item 1",
+    "sku": 15.0,
+    "quantity": 10
+  },
+  {
+    "name": "Item 2",
+    "sku": 25.0,
+    "quantity": 5
+  },
+  {
+    "name": "Item 3",
+    "sku": 7.5,
+    "quantity": 20
+  }
+]

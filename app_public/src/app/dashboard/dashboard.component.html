@@ -1,0 +1,137 @@
+<!-- Header -->
+<header class="header">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a href="#" class="navbar-brand">Inventory Listing</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbarNav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a routerLink="/inventory" class="nav-link active"
+              ><i class="bi bi-box pe-2"></i>Inventory</a
+            >
+          </li>
+          <li class="nav-item">
+            <a routerLink="/notifications" class="nav-link"
+              ><i class="bi bi-bell pe-2"></i>Notifications</a
+            >
+          </li>
+          <li class="nav-item">
+            <a routerLink="/logout" class="nav-link"
+              ><i class="bi bi-box-arrow-right pe-2"></i>Logout</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="container py-4">
+  <div class="row">
+    <div class="col">
+      <!-- Product Creation Button -->
+      <button
+        class="float-end mb-3"
+        mat-stroked-button
+        (click)="openCreateProductDialog()"
+      >
+        Add Product
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <!-- Inventory List -->
+      <div class="table-responsive">
+        <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8">
+          
+          <!-- Item Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">Item</th>
+            <td mat-cell *matCellDef="let element">
+              <span *ngIf="!element.isEditing">{{ element.name }}</span>
+              <input
+                *ngIf="element.isEditing"
+                type="text"
+                [(ngModel)]="element.name"
+                placeholder="Item"
+              />
+            </td>
+          </ng-container>
+
+          <!-- SKU Column -->
+          <ng-container matColumnDef="sku">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sku">SKU</th>
+            <td mat-cell *matCellDef="let element">
+              <span *ngIf="!element.isEditing">{{ element.sku }}</span>
+              <input
+                *ngIf="element.isEditing"
+                type="text"
+                [(ngModel)]="element.sku"
+                placeholder="SKU"
+              />
+            </td>
+          </ng-container>
+
+          <!-- Quantity Column -->
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by quantity">Quantity</th>
+            <td mat-cell *matCellDef="let element">
+              <span *ngIf="!element.isEditing">{{ element.quantity }}</span>
+              <input
+                *ngIf="element.isEditing"
+                type="number"
+                [(ngModel)]="element.quantity"
+                placeholder="Quantity"
+              />
+            </td>
+          </ng-container>
+
+          <!-- Actions Column -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef class="actions-column">
+              Actions
+            </th>
+            <td mat-cell *matCellDef="let element" class="actions-column">
+              <button
+                mat-button
+                color="primary"
+                *ngIf="!element.isEditing"
+                (click)="toggleEditMode(element)"
+              >
+                Edit <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-button
+                color="primary"
+                *ngIf="element.isEditing"
+                (click)="saveItem(element)"
+              >
+                Save <mat-icon>save</mat-icon>
+              </button>
+              <button mat-button color="warn" (click)="deleteItem(element)">
+                Delete <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <!-- Header Row -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <!-- Data Row -->
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
