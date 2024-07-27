@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NotificationsComponent } from './notifications/notifications.component';
@@ -16,6 +17,7 @@ import { routes } from './app.routes';
   declarations: [
     AppComponent,
     HeaderComponent,
+    FooterComponent,
     LoginComponent,
     DashboardComponent,
     CreateProductComponent,
