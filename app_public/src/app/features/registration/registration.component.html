@@ -1,0 +1,42 @@
+<!-- registration.component.html -->
+<div class="container container-max-md py-4">
+  <div class="row">
+    <div class="col">
+      <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
+        <div class="pl-2 pb-2">
+          <a routerLink="/login" class="link">Back to login</a>
+        </div>
+        <h1 class="h2 text-center mb-4">Create Account</h1>
+        <form
+          [formGroup]="registrationForm"
+          (ngSubmit)="onSubmit()"
+          class="form"
+        >
+          <div class="form-floating mb-3">
+            <input
+              type="email"
+              class="form-control"
+              placeholder="name@example.com"
+              id="email"
+              formControlName="email"
+            />
+            <label for="email">Email</label>
+          </div>
+          <div class="form-floating">
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Password"
+              formControlName="password"
+            />
+            <label for="password">Password</label>
+          </div>
+          <div class="pt-3">
+            <button type="submit" class="btn btn-primary">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

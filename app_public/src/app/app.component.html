@@ -1,5 +1,5 @@
 <main class="main">
-  <ng-container *ngIf="router.url !== '/login' && router.url !== '/logout'">
+  <ng-container *ngIf="router.url !== '/login' && router.url !== '/logout' && router.url !== '/register'">
     <app-header></app-header>
   </ng-container>
   <router-outlet></router-outlet>
