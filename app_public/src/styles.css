@@ -1,21 +1,85 @@
 /* You can add global styles to this file, and also import other style files */
-:root {
+:root,
+:host {
   --primary-color: #3e6837;
   --primary-hover-color: #4a7d3f;
   --on-disabled: #8f8f8f;
   --surface: #f7fbf1;
   --inverse-surface: #e0e4da;
-
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --sys-background: #f8fbf1;
+  --sys-on-background: #191d17;
+  --sys-surface: #f8fbf1;
+  --sys-surface-dim: #d8dbd2;
+  --sys-surface-bright: #f8fbf1;
+  --sys-surface-container-lowest: #ffffff;
+  --sys-surface-container-low: #f2f5eb;
+  --sys-surface-container: #ecefe5;
+  --sys-surface-container-high: #e6e9e0;
+  --sys-surface-container-highest: #e0e4da;
+  --sys-on-surface: #191d17;
+  --sys-surface-variant: #dfe4d7;
+  --sys-on-surface-variant: #43483f;
+  --sys-inverse-surface: #2e322b;
+  --sys-inverse-on-surface: #eff2e8;
+  --sys-outline: #73796e;
+  --sys-outline-variant: #c3c8bc;
+  --sys-shadow: #000000;
+  --sys-scrim: #000000;
+  --sys-surface-tint: #3e6837;
+  --sys-primary: #3e6837;
+  --sys-on-primary: #ffffff;
+  --sys-primary-container: #bff0b1;
+  --sys-on-primary-container: #002201;
+  --sys-inverse-primary: #a3d397;
+  --sys-secondary: #3d6838;
+  --sys-on-secondary: #ffffff;
+  --sys-secondary-container: #bef0b2;
+  --sys-on-secondary-container: #002202;
+  --sys-tertiary: #006970;
+  --sys-on-tertiary: #ffffff;
+  --sys-tertiary-container: #9df0f8;
+  --sys-on-tertiary-container: #002022;
+  --sys-error: #904a43;
+  --sys-on-error: #ffffff;
+  --sys-error-container: #ffdad5;
+  --sys-on-error-container: #3b0907;
+  --sys-neutral: #747870;
+  --sys-neutral-variant: #73796e;
+  --sys-primary-fixed: #bff0b1;
+  --sys-primary-fixed-dim: #a3d397;
+  --sys-on-primary-fixed: #002201;
+  --sys-on-primary-fixed-variant: #275022;
+  --sys-secondary-fixed: #bef0b2;
+  --sys-secondary-fixed-dim: #a3d398;
+  --sys-on-secondary-fixed: #002202;
+  --sys-on-secondary-fixed-variant: #265022;
+  --sys-tertiary-fixed: #9df0f8;
+  --sys-tertiary-fixed-dim: #80d4db;
+  --sys-on-tertiary-fixed: #002022;
+  --sys-on-tertiary-fixed-variant: #004f54;
+  --sys-inverse-secondary: #a3d398;
+  --sys-inverse-tertiary: #80d4db;
+  --sys-inverse-error: #ffb4ab;
+  --sys-error-fixed: #ffdad5;
+  --sys-error-fixed-dim: #ffb4ab;
+  --sys-on-error-fixed: #3b0907;
+  --sys-on-error-fixed-variant: #73342d;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 h1 {
   font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -26,9 +90,6 @@ h1 {
 main {
   width: 100%;
   min-height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   box-sizing: inherit;
   position: relative;
 }
@@ -50,6 +111,10 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.sub-header {
+  background-color: var(--sys-secondary-container);
 }
 
 /* Button Styles */
@@ -98,11 +163,18 @@ a {
   padding: 0 1rem;
 }
 
-/* Dashboard Styles */
-.dashboard-view {
-  background-color: var(--surface);
-  width: 100%;
-  height: 100vh;
+/* Container Styles */
+.container-max-sm {
+  max-width: 540px;
+  margin: 0 auto;
 }
 
+.container-max-md {
+  max-width: 720px;
+  margin: 0 auto;
+}
 
+/* Typography styles */
+.font-weight-md {
+  font-weight: 500 !important;
+}

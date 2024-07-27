@@ -11,6 +11,9 @@ import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 import { FormsModule } from '@angular/forms';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 
+import { RouterOutlet } from '@angular/router';
+import { RouterLink } from '@angular/router';
+
 /**
  * @title Dashboard Component
  */
@@ -24,6 +27,8 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
     MatIconModule,
     FormsModule,
     MatSortModule,
+    RouterOutlet,
+    RouterLink,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
