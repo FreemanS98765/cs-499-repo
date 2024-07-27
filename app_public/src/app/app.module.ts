@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { LoginComponent } from './features/login/login.component';
+import { RegistrationComponent } from './features/registration/registration.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { NotificationsComponent } from './features/notifications/notifications.component';
 import { CreateProductComponent } from './features/create-product/create-product.component';
@@ -24,6 +25,7 @@ import { routes } from './app.routes';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
+    RegistrationComponent,
     DashboardComponent,
     CreateProductComponent,
     NotificationsComponent,
