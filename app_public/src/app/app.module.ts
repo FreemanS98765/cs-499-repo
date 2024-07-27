@@ -13,6 +13,11 @@ import { NotificationsComponent } from './features/notifications/notifications.c
 import { CreateProductComponent } from './features/create-product/create-product.component';
 import { routes } from './app.routes';
 
+/**
+ * @title App Module
+ * 
+ * This module serves as the root module for the application. It imports necessary modules and declares the main components.
+ */
 @NgModule({
   declarations: [
     AppComponent,
