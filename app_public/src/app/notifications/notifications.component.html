@@ -37,11 +37,45 @@
   </nav>
 </header>
 
-<div class="container py-4">
+<!-- Notifications Sub Header -->
+<div class="sub-header">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="d-flex justify-content-between align-item-end p-2">
+          <!-- Notification List -->
+          <h1>Notifications</h1>
+          <div class="d-flex flex-column justify-content-center">
+            <!-- Notifications toggle -->
+            <mat-slide-toggle
+              [(ngModel)]="notificationsState"
+              (change)="toggleNotifications($event)"
+              >Enable notifications</mat-slide-toggle
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Notification List -->
+<div class="container container-max-sm py-4">
   <div class="row">
     <div class="col">
-      <!-- Notification List -->
-       <h1>Notifications</h1>
+      <div class="mb-3" *ngFor="let notification of notifications">
+        <mat-card appearance="outlined" class="mb-3">
+          <mat-card-content class="d-flex justify-content-between">
+            <div>
+              <mat-card-title class="font-weight-md">{{ notification.title }}</mat-card-title>
+              <mat-card-subtitle>{{ notification.date }}</mat-card-subtitle>
+            </div>
+            <button mat-icon-button color="warn">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </div>
   </div>
 </div>
