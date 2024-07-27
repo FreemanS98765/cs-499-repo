@@ -22,7 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     MatButtonModule,
     CommonModule,
-    MatIconModule
+    MatIconModule,
   ],
   templateUrl: './notifications.component.html',
   styleUrl: './notifications.component.css',
@@ -31,13 +31,19 @@ import { MatIconModule } from '@angular/material/icon';
 export class NotificationsComponent {
   notificationsState: boolean = true;
 
+  notifications = [
+    { id: 1, title: 'Deleted item: New Product', date: '2024-06-23 21:08:43' },
+    { id: 2, title: 'Deleted item: sdfas', date: '2024-06-23 21:08:45' },
+    { id: 3, title: 'New item added: dsaf', date: '2024-06-23 21:08:57' },
+  ];
+
   toggleNotifications(event: any): void {
     this.notificationsState = event.checked;
   }
 
-  notifications = [
-    { title: 'Deleted item: New Product', date: '2024-06-23 21:08:43' },
-    { title: 'Deleted item: sdfas', date: '2024-06-23 21:08:45' },
-    { title: 'New item added: dsaf', date: '2024-06-23 21:08:57' },
-  ];
+  deleteNotification(id: number): void {
+    this.notifications = this.notifications.filter(
+      (notification) => notification.id !== id
+    );
+  }
 }
