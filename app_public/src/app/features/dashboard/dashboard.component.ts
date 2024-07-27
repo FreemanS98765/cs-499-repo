@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import { InventoryService } from '../services/inventory.service';
-import { InventoryItem } from '../models/inventory-item.model';
+import { InventoryService } from '../../core/services/inventory.service';
+import { InventoryItem } from '../../core/models/inventory-item.model';
 import { CreateProductComponent } from '../create-product/create-product.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';

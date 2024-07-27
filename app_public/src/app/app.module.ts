@@ -5,12 +5,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NotificationsComponent } from './notifications/notifications.component';
-import { CreateProductComponent } from './create-product/create-product.component';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { LoginComponent } from './features/login/login.component';
+import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { NotificationsComponent } from './features/notifications/notifications.component';
+import { CreateProductComponent } from './features/create-product/create-product.component';
 import { routes } from './app.routes';
 
 @NgModule({

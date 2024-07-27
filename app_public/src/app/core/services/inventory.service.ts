@@ -7,7 +7,7 @@ import { InventoryItem } from '../models/inventory-item.model';
   providedIn: 'root',
 })
 export class InventoryService {
-  private dataUrl = 'assets/inventory.json';
+  private dataUrl = '/app/assets/inventory.json';
 
   constructor(private http: HttpClient) {}
 
