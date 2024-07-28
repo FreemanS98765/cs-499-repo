@@ -24,19 +24,17 @@
 <div class="container container-max-sm py-4">
   <div class="row">
     <div class="col">
-      <div class="mb-3" *ngFor="let notification of NOTIFICATIONS">
+      <div class="mb-3" *ngFor="let notification of notifications">
         <mat-card appearance="outlined" class="mb-3">
           <mat-card-content class="d-flex justify-content-between">
             <div>
-              <mat-card-title class="font-weight-md">{{
-                notification.title
-              }}</mat-card-title>
+              <mat-card-title class="font-weight-md">{{notification.msg}}</mat-card-title>
               <mat-card-subtitle>{{ notification.date }}</mat-card-subtitle>
             </div>
             <button
               mat-icon-button
               color="warn"
-              (click)="deleteNotification(notification.id)"
+              (click)="deleteNotification(notification._id)"
             >
               <mat-icon>delete</mat-icon>
             </button>

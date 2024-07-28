@@ -47,7 +47,7 @@ export class InventoryService {
    * @returns {Observable<any>} An observable indicating the update operation result.
    */
   updateInventoryItem(item: InventoryItem): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${item.id}`, item);
+    return this.http.put(`${this.apiUrl}/${item._id}`, item);
   }
 
   /**
@@ -56,7 +56,7 @@ export class InventoryService {
    * @param {number} id - The ID of the inventory item to delete.
    * @returns {Observable<any>} An observable indicating the delete operation result.
    */
-  deleteInventoryItem(id: number): Observable<any> {
+  deleteInventoryItem(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }

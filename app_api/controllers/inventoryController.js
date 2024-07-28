@@ -1,6 +1,6 @@
-const InventoryItem = require('../models/InventoryItem');
-const Notification = require('../models/Notification');
-const smsService = require('../../app_server/services/smsService');
+const InventoryItem = require("../models/InventoryItem");
+const Notification = require("../models/Notification");
+const smsService = require("../../app_server/services/smsService");
 
 // Add an inventory item
 exports.addInventoryItem = async (req, res) => {
@@ -10,14 +10,15 @@ exports.addInventoryItem = async (req, res) => {
 
     // Add notification
     const notification = new Notification({
-      text: `New item added: ${newItem.name}`,
+      msg: `New item added: ${newItem.name}`,
     });
     await notification.save();
 
     // Send SMS notification
-    smsService.sendSMSNotification(`New item added: ${newItem.name}`);
+    const smsMessage = `New item added: ${newItem.name}`;
+    smsService.sendSMSNotification(smsMessage);
 
-    res.status(201).json(newItem);
+    res.status(201).json({ newItem, message: smsMessage });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -38,7 +39,7 @@ exports.getInventoryById = async (req, res) => {
   try {
     const item = await InventoryItem.findById(req.params.id);
     if (!item) {
-      return res.status(404).json({ error: 'Item not found' });
+      return res.status(404).json({ error: "Item not found" });
     }
     res.status(200).json(item);
   } catch (err) {
@@ -49,21 +50,26 @@ exports.getInventoryById = async (req, res) => {
 // Update an inventory item
 exports.updateInventory = async (req, res) => {
   try {
-    const item = await InventoryItem.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const item = await InventoryItem.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
     if (!item) {
-      return res.status(404).json({ error: 'Item not found' });
+      return res.status(404).json({ error: "Item not found" });
     }
 
     // Add notification
     const notification = new Notification({
-      text: `Updated item: ${item.name}`,
+      msg: `Updated item: ${item.name}`,
     });
     await notification.save();
 
     // Send SMS notification
-    smsService.sendSMSNotification(`Updated item: ${item.name}`);
+    const smsMessage = `Updated item: ${item.name}`;
+    smsService.sendSMSNotification(smsMessage);
 
-    res.status(200).json(item);
+    res.status(200).json({ item, message: smsMessage });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -73,20 +79,22 @@ exports.updateInventory = async (req, res) => {
 exports.deleteInventory = async (req, res) => {
   try {
     const item = await InventoryItem.findByIdAndDelete(req.params.id);
+    
     if (!item) {
-      return res.status(404).json({ error: 'Item not found' });
+      return res.status(404).json({ error: "Item not found" });
     }
 
     // Add notification
     const notification = new Notification({
-      text: `Deleted item: ${item.name}`,
+      msg: `Deleted item: ${item.name}`,
     });
     await notification.save();
 
     // Send SMS notification
-    smsService.sendSMSNotification(`Deleted item: ${item.name}`);
+    const smsMessage = `Deleted item: ${item.name}`;
+    smsService.sendSMSNotification(smsMessage);
 
-    res.status(200).json({ message: 'Item deleted successfully' });
+    res.status(200).json({ message: smsMessage });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

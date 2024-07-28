@@ -8,7 +8,7 @@ const bodyParser = require("body-parser");
 require("./app_api/config/db");
 
 // Import routes
-const indexRouter = require("./app_api/routes/index");
+const apiRouter = require("./app_api/routes/index");
 
 const app = express();
 
@@ -33,7 +33,7 @@ app.use(
 );
 
 // Use routes
-app.use("/api", indexRouter);
+app.use("/api", apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

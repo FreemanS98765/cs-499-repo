@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { InventoryService } from '../../core/services/inventory.service';
 import { InventoryItem } from '../../core/models/inventory-item.model';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 /**
  * Component for creating a new product.
@@ -26,6 +27,7 @@ import { InventoryItem } from '../../core/models/inventory-item.model';
     MatButtonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSnackBarModule,
   ],
   templateUrl: './create-product.component.html',
   styleUrl: './create-product.component.css',
@@ -42,11 +44,13 @@ export class CreateProductComponent {
    * @param {FormBuilder} fb - The FormBuilder service to create form controls.
    * @param {MatDialogRef<CreateProductComponent>} dialogRef - Reference to the dialog opened.
    * @param {InventoryService} inventoryService - Service to manage inventory data.
+   * @param {MatSnackBar} snackBar - Service to display snack bar messages.
    */
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<CreateProductComponent>,
-    private inventoryService: InventoryService
+    private inventoryService: InventoryService,
+    private snackBar: MatSnackBar
   ) {
     // Initialize the form with empty values and validators
     this.createProductForm = this.fb.group({
@@ -64,11 +68,10 @@ export class CreateProductComponent {
   onSubmit(): void {
     if (this.createProductForm.valid) {
       const newProduct: InventoryItem = this.createProductForm.value;
-      console.log('Adding product:', newProduct);
       this.inventoryService.addInventoryItem(newProduct).subscribe(
         (result) => {
-          console.log('Product added:', result);
-          this.dialogRef.close(result); // Pass the result back to the caller
+          this.dialogRef.close(result.newItem); // Pass the result back to the caller
+          this.snackBar.open(result.message, 'Close', { duration: 3000 });
         },
         (error) => {
           console.error('Error adding product:', error);

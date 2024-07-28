@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Define the InventoryItem schema
@@ -18,6 +18,6 @@ const InventoryItemSchema = new Schema({
 });
 
 // Create the InventoryItem model
-const InventoryItem = mongoose.model('InventoryItem', InventoryItemSchema);
+const InventoryItem = mongoose.model("InventoryItem", InventoryItemSchema);
 
 module.exports = InventoryItem;

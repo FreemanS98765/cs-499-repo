@@ -5,47 +5,43 @@ const Notification = require("../models/Notification");
 exports.getNotifications = async (req, res) => {
   try {
     const notifications = await Notification.find();
-    res.json(notifications);
+    res.status(200).json(notifications);
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(500).json({ error: err.message });
   }
 };
 
 // Add a notification
 exports.addNotification = async (req, res) => {
-  const { text } = req.body;
+  const { msg } = req.body;
 
   try {
     const newNotification = new Notification({
-      text,
+      msg,
       date: new Date(),
     });
 
     const notification = await newNotification.save();
-    res.json(notification);
+    res.status(201).json(notification);
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error");
+    res.status(400).json({ error: err.message });
   }
 };
 
 // Delete a notification
 exports.deleteNotification = async (req, res) => {
   try {
-    const notification = await Notification.findById(req.params.id);
+    const notification = await Notification.findByIdAndDelete(req.params.id);
 
     if (!notification) {
       return res.status(404).json({ msg: "Notification not found" });
     }
 
-    await notification.remove();
     res.json({ msg: "Notification removed" });
   } catch (err) {
-    console.error(err.message);
     if (err.kind === "ObjectId") {
       return res.status(404).json({ msg: "Notification not found" });
     }
-    res.status(500).send("Server error");
+    res.status(500).json({ error: err.message });
   }
 };

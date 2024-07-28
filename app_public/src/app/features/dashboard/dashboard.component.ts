@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 import { FormsModule } from '@angular/forms';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { RouterOutlet } from '@angular/router';
 import { RouterLink } from '@angular/router';
@@ -32,6 +33,7 @@ import { RouterLink } from '@angular/router';
     MatSortModule,
     RouterOutlet,
     RouterLink,
+    MatSnackBarModule,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
@@ -53,11 +55,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
    * @param {InventoryService} inventoryService - Service to manage inventory data.
    * @param {MatDialog} dialog - Service to manage dialogs.
    * @param {LiveAnnouncer} _liveAnnouncer - Service to announce changes for accessibility.
+   * @param {MatSnackBar} snackBar - Service to display snack bar messages.
    */
   constructor(
     private inventoryService: InventoryService,
     public dialog: MatDialog,
-    private _liveAnnouncer: LiveAnnouncer
+    private _liveAnnouncer: LiveAnnouncer,
+    private snackBar: MatSnackBar
   ) {}
 
   /** ViewChild to access the table sorting directive */
@@ -85,7 +89,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       (data) => {
         this.inventory = data;
         this.dataSource.data = this.inventory;
-        console.log(this.inventory);
       },
       (error) => {
         console.error('Error loading inventory', error);
@@ -104,7 +107,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        console.log('The dialog was closed', result);
         this.loadInventory();
       }
     });
@@ -142,10 +144,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
    * @param {InventoryItem} item - The inventory item to delete.
    */
   deleteItem(item: InventoryItem): void {
-    // TODO: Implement delete functionality when server is ready
-    this.inventoryService.deleteInventoryItem(item.id).subscribe(
-      () => {
+    this.inventoryService.deleteInventoryItem(item._id).subscribe(
+      (result) => {
         this.loadInventory();
+        this.snackBar.open(result.message, 'Close', { duration: 3000 });
       },
       (error) => {
         console.error('Error deleting inventory item', error);

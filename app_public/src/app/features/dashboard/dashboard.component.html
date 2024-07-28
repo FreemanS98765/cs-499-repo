@@ -20,12 +20,12 @@
           <!-- Item Column -->
           <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">Item</th>
-            <td mat-cell *matCellDef="let element">
-              <span *ngIf="!element.isEditing">{{ element.name }}</span>
+            <td mat-cell *matCellDef="let item">
+              <span *ngIf="!item.isEditing">{{ item.name }}</span>
               <input
-                *ngIf="element.isEditing"
+                *ngIf="item.isEditing"
                 type="text"
-                [(ngModel)]="element.name"
+                [(ngModel)]="item.name"
                 placeholder="Item"
               />
             </td>
@@ -34,12 +34,12 @@
           <!-- SKU Column -->
           <ng-container matColumnDef="sku">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by sku">SKU</th>
-            <td mat-cell *matCellDef="let element">
-              <span *ngIf="!element.isEditing">{{ element.sku }}</span>
+            <td mat-cell *matCellDef="let item">
+              <span *ngIf="!item.isEditing">{{ item.sku }}</span>
               <input
-                *ngIf="element.isEditing"
+                *ngIf="item.isEditing"
                 type="text"
-                [(ngModel)]="element.sku"
+                [(ngModel)]="item.sku"
                 placeholder="SKU"
               />
             </td>
@@ -48,12 +48,12 @@
           <!-- Quantity Column -->
           <ng-container matColumnDef="quantity">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by quantity">Quantity</th>
-            <td mat-cell *matCellDef="let element">
-              <span *ngIf="!element.isEditing">{{ element.quantity }}</span>
+            <td mat-cell *matCellDef="let item">
+              <span *ngIf="!item.isEditing">{{ item.quantity }}</span>
               <input
-                *ngIf="element.isEditing"
+                *ngIf="item.isEditing"
                 type="number"
-                [(ngModel)]="element.quantity"
+                [(ngModel)]="item.quantity"
                 placeholder="Quantity"
               />
             </td>
@@ -64,24 +64,24 @@
             <th mat-header-cell *matHeaderCellDef class="actions-column">
               Actions
             </th>
-            <td mat-cell *matCellDef="let element" class="actions-column">
+            <td mat-cell *matCellDef="let item" class="actions-column">
               <button
                 mat-button
                 color="primary"
-                *ngIf="!element.isEditing"
-                (click)="toggleEditMode(element)"
+                *ngIf="!item.isEditing"
+                (click)="toggleEditMode(item)"
               >
                 Edit <mat-icon>edit</mat-icon>
               </button>
               <button
                 mat-button
                 color="primary"
-                *ngIf="element.isEditing"
-                (click)="saveItem(element)"
+                *ngIf="item.isEditing"
+                (click)="saveItem(item)"
               >
                 Save <mat-icon>save</mat-icon>
               </button>
-              <button mat-button color="warn" (click)="deleteItem(element)">
+              <button mat-button color="warn" (click)="deleteItem(item)">
                 Delete <mat-icon>delete</mat-icon>
               </button>
             </td>
