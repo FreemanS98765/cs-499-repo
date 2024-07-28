@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { NotificationService } from '../../core/services/notification.service';
 import { Notification } from '../../core/models/notification.model';
+import { AuthService } from '../../core/services/auth.service';
 
 /**
  * @title Notifications Component
@@ -38,10 +39,18 @@ export class NotificationsComponent implements OnInit {
   /** Notifications data */
   notifications: Notification[] = [];
 
-  constructor(private notificationService: NotificationService) {}
+  userId: string;
+
+  constructor(
+    private notificationService: NotificationService,
+    private authService: AuthService
+  ) {
+    this.userId = this.authService.getUserId();
+  }
 
   ngOnInit(): void {
     this.loadNotifications();
+    this.loadNotificationState();
   }
 
   /**
@@ -59,12 +68,30 @@ export class NotificationsComponent implements OnInit {
   }
 
   /**
+   * Loads the notification state.
+   */
+  loadNotificationState(): void {
+    this.notificationsState = this.authService.getNotificationsState();
+  }
+
+  /**
    * Toggles the notifications state.
    *
    * @param {any} event - The event object containing the toggle state.
    */
   toggleNotifications(event: any): void {
     this.notificationsState = event.checked;
+    this.authService.setNotificationsState(this.notificationsState); // Update local storage
+    this.notificationService
+      .toggleNotifications(this.userId, this.notificationsState)
+      .subscribe(
+        (response) => {
+          console.log(response.msg);
+        },
+        (error) => {
+          console.error('Error toggling notifications:', error);
+        }
+      );
   }
 
   /**

@@ -11,4 +11,7 @@ router.post('/', notificationController.addNotification);
 // Delete a notification
 router.delete('/:id', notificationController.deleteNotification);
 
+// Toggle notifications
+router.post('/toggle-notifications', notificationController.toggleNotifications);
+
 module.exports = router;

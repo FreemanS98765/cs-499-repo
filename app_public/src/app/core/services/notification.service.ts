@@ -22,4 +22,14 @@ export class NotificationService {
   deleteNotification(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  toggleNotifications(
+    userId: string,
+    notificationsEnabled: boolean
+  ): Observable<any> {
+    return this.http.post(`${this.apiUrl}/toggle-notifications`, {
+      userId,
+      notificationsEnabled,
+    });
+  }
 }
