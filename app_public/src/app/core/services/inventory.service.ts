@@ -12,7 +12,7 @@ import { InventoryItem } from '../models/inventory-item.model';
   providedIn: 'root',
 })
 export class InventoryService {
-  private dataUrl = '/app/assets/inventory.json';
+  private apiUrl = 'http://localhost:3000/api/inventory';
 
   /**
    * Constructor to inject the HttpClient service.
@@ -27,7 +27,17 @@ export class InventoryService {
    * @returns {Observable<InventoryItem[]>} An observable containing the list of inventory items.
    */
   getInventory(): Observable<InventoryItem[]> {
-    return this.http.get<InventoryItem[]>(this.dataUrl);
+    return this.http.get<InventoryItem[]>(this.apiUrl);
+  }
+
+  /**
+   * Adds an inventory item to the server.
+   * 
+   * @param {InventoryItem} item - The inventory item to add.
+   * @returns {Observable<any>} An observable indicating the add operation result.
+   */
+  addInventoryItem(item: InventoryItem): Observable<any> {
+    return this.http.post(this.apiUrl, item);
   }
 
   /**
@@ -37,7 +47,7 @@ export class InventoryService {
    * @returns {Observable<any>} An observable indicating the update operation result.
    */
   updateInventoryItem(item: InventoryItem): Observable<any> {
-    return this.http.put(`${this.dataUrl}/${item.id}`, item);
+    return this.http.put(`${this.apiUrl}/${item._id}`, item);
   }
 
   /**
@@ -46,7 +56,7 @@ export class InventoryService {
    * @param {number} id - The ID of the inventory item to delete.
    * @returns {Observable<any>} An observable indicating the delete operation result.
    */
-  deleteInventoryItem(id: number): Observable<any> {
-    return this.http.delete(`${this.dataUrl}/${id}`);
+  deleteInventoryItem(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }
