@@ -1,24 +1,31 @@
 const InventoryItem = require("../models/InventoryItem");
 const Notification = require("../models/Notification");
 const smsService = require("../../app_server/services/smsService");
+const User = require("../models/User");
 
 // Add an inventory item
 exports.addInventoryItem = async (req, res) => {
   try {
-    const newItem = new InventoryItem(req.body);
+    const { name, sku, quantity, userId } = req.body; // Retrieve userId from the request body
+
+    const newItem = new InventoryItem({ name, sku, quantity });
     await newItem.save();
 
-    // Add notification
-    const notification = new Notification({
-      msg: `New item added: ${newItem.name}`,
-    });
-    await notification.save();
+    // Check if notifications are enabled for the user
+    const user = await User.findById(userId);
 
-    // Send SMS notification
-    const smsMessage = `New item added: ${newItem.name}`;
-    smsService.sendSMSNotification(smsMessage);
+    if (user && user.notificationsEnabled) {
+      // Add notification
+      const notification = new Notification({
+        msg: `New item added: ${newItem.name}`,
+      });
+      await notification.save();
 
-    res.status(201).json({ newItem, message: smsMessage });
+      // Send SMS notification
+      smsService.sendSMSNotification(`New item added: ${newItem.name}`);
+    }
+
+    res.status(201).json({ newItem, message: "Item added successfully" });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -50,6 +57,7 @@ exports.getInventoryById = async (req, res) => {
 // Update an inventory item
 exports.updateInventory = async (req, res) => {
   try {
+    const { userId } = req.body; // Ensure userId is passed in the request body
     const item = await InventoryItem.findByIdAndUpdate(
       req.params.id,
       req.body,
@@ -59,17 +67,21 @@ exports.updateInventory = async (req, res) => {
       return res.status(404).json({ error: "Item not found" });
     }
 
-    // Add notification
-    const notification = new Notification({
-      msg: `Updated item: ${item.name}`,
-    });
-    await notification.save();
+    // Check if notifications are enabled for the user
+    const user = await User.findById(userId);
 
-    // Send SMS notification
-    const smsMessage = `Updated item: ${item.name}`;
-    smsService.sendSMSNotification(smsMessage);
+    if (user && user.notificationsEnabled) {
+      // Add notification
+      const notification = new Notification({
+        msg: `Updated item: ${item.name}`,
+      });
+      await notification.save();
 
-    res.status(200).json({ item, message: smsMessage });
+      // Send SMS notification
+      smsService.sendSMSNotification(`Updated item: ${item.name}`);
+    }
+
+    res.status(200).json({ item, message: "Item updated successfully" });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -78,23 +90,28 @@ exports.updateInventory = async (req, res) => {
 // Delete an inventory item
 exports.deleteInventory = async (req, res) => {
   try {
+    const { userId } = req.body; // Ensure userId is passed in the request body
     const item = await InventoryItem.findByIdAndDelete(req.params.id);
-    
+
     if (!item) {
       return res.status(404).json({ error: "Item not found" });
     }
 
-    // Add notification
-    const notification = new Notification({
-      msg: `Deleted item: ${item.name}`,
-    });
-    await notification.save();
+    // Check if notifications are enabled for the user
+    const user = await User.findById(userId);
 
-    // Send SMS notification
-    const smsMessage = `Deleted item: ${item.name}`;
-    smsService.sendSMSNotification(smsMessage);
+    if (user && user.notificationsEnabled) {
+      // Add notification
+      const notification = new Notification({
+        msg: `Deleted item: ${item.name}`,
+      });
+      await notification.save();
 
-    res.status(200).json({ message: smsMessage });
+      // Send SMS notification
+      smsService.sendSMSNotification(`Deleted item: ${item.name}`);
+    }
+
+    res.status(200).json({ message: "Item deleted successfully" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

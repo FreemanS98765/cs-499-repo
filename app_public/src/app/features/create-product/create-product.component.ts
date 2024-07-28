@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { InventoryService } from '../../core/services/inventory.service';
 import { InventoryItem } from '../../core/models/inventory-item.model';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { AuthService } from '../../core/services/auth.service';
 
 /**
  * Component for creating a new product.
@@ -45,12 +46,14 @@ export class CreateProductComponent {
    * @param {MatDialogRef<CreateProductComponent>} dialogRef - Reference to the dialog opened.
    * @param {InventoryService} inventoryService - Service to manage inventory data.
    * @param {MatSnackBar} snackBar - Service to display snack bar messages.
+   * @param {AuthService} authService - Service to manage authentication.
    */
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<CreateProductComponent>,
     private inventoryService: InventoryService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private authService: AuthService
   ) {
     // Initialize the form with empty values and validators
     this.createProductForm = this.fb.group({
@@ -68,6 +71,7 @@ export class CreateProductComponent {
   onSubmit(): void {
     if (this.createProductForm.valid) {
       const newProduct: InventoryItem = this.createProductForm.value;
+      const userId = this.authService.getUserId();
       this.inventoryService.addInventoryItem(newProduct).subscribe(
         (result) => {
           this.dialogRef.close(result.newItem); // Pass the result back to the caller

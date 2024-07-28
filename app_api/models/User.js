@@ -11,6 +11,10 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  notificationsEnabled: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 // Create the User model

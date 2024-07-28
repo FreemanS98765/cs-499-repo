@@ -23,7 +23,7 @@ exports.register = async (req, res) => {
 
     // Save user
     await user.save();
-    console.log('User registered successfully:', user);
+    console.log("User registered successfully:", user);
 
     // Return JSON Web Token
     const payload = { user: { id: user.id } };
@@ -60,7 +60,11 @@ exports.login = async (req, res) => {
     const payload = { user: { id: user.id } };
     jwt.sign(payload, "secret", { expiresIn: 3600 }, (err, token) => {
       if (err) throw err;
-      res.json({ token });
+      res.json({
+        token,
+        userId: user.id,
+        notificationsEnabled: user.notificationsEnabled,
+      });
     });
   } catch (err) {
     console.error(err.message);

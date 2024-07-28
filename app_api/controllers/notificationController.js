@@ -1,5 +1,6 @@
 // notificationController.js
 const Notification = require("../models/Notification");
+const User = require("../models/User");
 
 // Get all notifications
 exports.getNotifications = async (req, res) => {
@@ -43,5 +44,23 @@ exports.deleteNotification = async (req, res) => {
       return res.status(404).json({ msg: "Notification not found" });
     }
     res.status(500).json({ error: err.message });
+  }
+};
+
+exports.toggleNotifications = async (req, res) => {
+  try {
+    const { userId, notificationsEnabled } = req.body;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+
+    user.notificationsEnabled = notificationsEnabled;
+    await user.save();
+    res.status(200).json({ msg: "Notifications state updated successfully" });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
   }
 };
