@@ -143,11 +143,14 @@ export class DashboardComponent implements OnInit, AfterViewInit {
    */
   deleteItem(item: InventoryItem): void {
     // TODO: Implement delete functionality when server is ready
-    // this.inventoryService.deleteInventoryItem(item.id).subscribe(() => {
-    //   this.loadInventory();
-    // });
-
-    console.log('Delete item:', item);
+    this.inventoryService.deleteInventoryItem(item.id).subscribe(
+      () => {
+        this.loadInventory();
+      },
+      (error) => {
+        console.error('Error deleting inventory item', error);
+      }
+    );
   }
 
   /**

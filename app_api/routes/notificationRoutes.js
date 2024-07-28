@@ -3,12 +3,12 @@ const router = express.Router();
 const notificationController = require('../controllers/notificationController');
 
 // Get all notifications
-router.get('/notifications', notificationController.getNotifications);
+router.get('/', notificationController.getNotifications);
 
 // Add a notification
-router.post('/notifications', notificationController.addNotification);
+router.post('/', notificationController.addNotification);
 
 // Delete a notification
-router.delete('/notifications/:id', notificationController.deleteNotification);
+router.delete('/:id', notificationController.deleteNotification);
 
 module.exports = router;

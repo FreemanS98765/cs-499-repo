@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -6,6 +7,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { InventoryService } from '../../core/services/inventory.service';
+import { InventoryItem } from '../../core/models/inventory-item.model';
 
 /**
  * Component for creating a new product.
@@ -16,6 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'app-create-product',
   standalone: true,
   imports: [
+    CommonModule,
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
@@ -37,28 +41,42 @@ export class CreateProductComponent {
    *
    * @param {FormBuilder} fb - The FormBuilder service to create form controls.
    * @param {MatDialogRef<CreateProductComponent>} dialogRef - Reference to the dialog opened.
+   * @param {InventoryService} inventoryService - Service to manage inventory data.
    */
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<CreateProductComponent>
+    private dialogRef: MatDialogRef<CreateProductComponent>,
+    private inventoryService: InventoryService
   ) {
-    // Initialize the form with empty values
+    // Initialize the form with empty values and validators
     this.createProductForm = this.fb.group({
-      name: [''],
-      sku: [''],
-      quantity: [''],
+      name: ['', Validators.required],
+      sku: ['', Validators.required],
+      quantity: ['', [Validators.required, Validators.min(0)]],
     });
   }
 
   /**
    * Handle form submission.
    *
-   * This method logs the form values to the console and closes the dialog.
+   * This method sends the form values to the server and closes the dialog.
    */
   onSubmit(): void {
-    // TODO: Implement product add when server is ready
-    console.log(this.createProductForm.value);
-    this.dialogRef.close();
+    if (this.createProductForm.valid) {
+      const newProduct: InventoryItem = this.createProductForm.value;
+      console.log('Adding product:', newProduct);
+      this.inventoryService.addInventoryItem(newProduct).subscribe(
+        (result) => {
+          console.log('Product added:', result);
+          this.dialogRef.close(result); // Pass the result back to the caller
+        },
+        (error) => {
+          console.error('Error adding product:', error);
+        }
+      );
+    } else {
+      console.error('Form is invalid');
+    }
   }
 
   /**

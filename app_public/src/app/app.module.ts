@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/components/header/header.component';
@@ -36,6 +37,7 @@ import { routes } from './app.routes';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
+    HttpClient,
   ],
   providers: [],
   bootstrap: [AppComponent],

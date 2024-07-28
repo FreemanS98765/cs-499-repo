@@ -3,7 +3,7 @@ const Notification = require('../models/Notification');
 const smsService = require('../../app_server/services/smsService');
 
 // Add an inventory item
-exports.addInventory = async (req, res) => {
+exports.addInventoryItem = async (req, res) => {
   try {
     const newItem = new InventoryItem(req.body);
     await newItem.save();

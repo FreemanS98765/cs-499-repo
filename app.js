@@ -1,3 +1,4 @@
+const cors = require("cors");
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
@@ -22,6 +23,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+
+// Enable CORS
+app.use(
+  cors({
+    origin: "http://localhost:4200",
+    optionsSuccessStatus: 200,
+  })
+);
 
 // Use routes
 app.use("/api", indexRouter);
