@@ -13,6 +13,20 @@
               formControlName="email"
             />
             <label for="email">Email</label>
+            <div
+              *ngIf="
+                loginForm.get('email')?.invalid &&
+                loginForm.get('email')?.touched
+              "
+              class="text-danger"
+            >
+              <small *ngIf="loginForm.get('email')?.errors?.['required']"
+                >Email is required.</small
+              >
+              <small *ngIf="loginForm.get('email')?.errors?.['email']"
+                >Enter a valid email.</small
+              >
+            </div>
           </div>
           <div class="form-floating">
             <input
@@ -23,6 +37,20 @@
               formControlName="password"
             />
             <label for="password">Password</label>
+            <div
+              *ngIf="
+                loginForm.get('password')?.invalid &&
+                loginForm.get('password')?.touched
+              "
+              class="text-danger"
+            >
+              <small *ngIf="loginForm.get('password')?.errors?.['required']"
+                >Password is required.</small
+              >
+              <small *ngIf="loginForm.get('password')?.errors?.['minlength']"
+                >Password must be at least 8 characters.</small
+              >
+            </div>
           </div>
           <div class="justify-content-center d-flex">
             <button type="submit" class="btn login-btn">Login</button>
