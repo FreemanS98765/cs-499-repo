@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   ReactiveFormsModule,
   FormGroup,
@@ -6,6 +7,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterOutlet, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 /**
  * @title Login Component
@@ -19,7 +22,7 @@ import { Router, RouterOutlet, RouterLink } from '@angular/router';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [ReactiveFormsModule, RouterOutlet, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterOutlet, RouterLink, MatSnackBarModule],
   host: { class: 'login-view' },
 })
 export class LoginComponent implements OnInit {
@@ -31,43 +34,50 @@ export class LoginComponent implements OnInit {
    *
    * @param {FormBuilder} fb - Form builder service to create the form group.
    * @param {Router} router - Router service to navigate between views.
+   * @param {AuthService} authService - Authentication service to handle user login.
+   * @param {MatSnackBar} snackBar - Material snack bar service to display messages.
    */
-  constructor(private fb: FormBuilder, private router: Router) {
-    // Initialize the form group with empty values
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService,
+    private snackBar: MatSnackBar
+  ) {
+    // Initialize the form group with empty values and validation rules
     this.loginForm = this.fb.group({
-      email: [''],
-      password: [''],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
   /**
-   * OnInit lifecycle hook to set up form validation on component initialization.
+   * Lifecycle method to initialize the component.
    */
-  ngOnInit(): void {
-    // TODO: Uncomment the following lines when ready to implement validation
-    // this.loginForm = this.fb.group({
-    //   email: ['', [Validators.required, Validators.email]],
-    //   password: ['', [Validators.required, Validators.minLength(8)]],
-    // });
-  }
+  ngOnInit(): void {}
 
   /**
    * Handle form submission to log the user in.
    *
-   * If form validation is enabled, this method would also check if the form is valid before
-   * proceeding with the login process.
+   * This method checks if the form is valid, and then calls the AuthService to authenticate the user.
+   * If authentication is successful, it navigates to the dashboard. Otherwise, it shows an error message.
    */
   onSubmit(): void {
-    // TODO: Uncomment the following lines when ready to implement validation
-    // if (this.loginForm.valid) {
-    //   console.log('Email: ' + this.loginForm.value.email);
-    //   console.log('Password: ' + this.loginForm.value.password);
-
-    //   // Navigate to the dashboard view
-    //   this.router.navigate(['/dashboard']);
-    // }
-
-    // Navigate to the dashboard view
-    this.router.navigate(['/dashboard']);
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+      this.authService.login(email, password).subscribe(
+        (response) => {
+          this.router.navigate(['/dashboard']);
+        },
+        (error) => {
+          this.snackBar.open('Invalid email or password', 'Close', {
+            duration: 3000,
+          });
+        }
+      );
+    } else {
+      this.snackBar.open('Please fill in the form correctly', 'Close', {
+        duration: 3000,
+      });
+    }
   }
 }
