@@ -26,7 +26,7 @@ exports.register = async (req, res) => {
     console.log("User registered successfully:", user);
 
     // Return JSON Web Token
-    const payload = { user: { id: user.id } };
+    const payload = { user: { id: user._id } };
     jwt.sign(payload, "secret", { expiresIn: 3600 }, (err, token) => {
       if (err) throw err;
       res.json({ token });
@@ -57,7 +57,7 @@ exports.login = async (req, res) => {
     }
 
     // Return JSON Web Token
-    const payload = { user: { id: user.id } };
+    const payload = { user: { id: user._id } };
     jwt.sign(payload, "secret", { expiresIn: 3600 }, (err, token) => {
       if (err) throw err;
       res.json({
