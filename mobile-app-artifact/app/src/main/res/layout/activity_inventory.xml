@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/inventory"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InventoryActivity">
+
+    <!-- Main Content Layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Header with Title -->
+        <RelativeLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/md_theme_primary"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/textViewHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/inventory_title"
+                android:textSize="24sp"
+                android:textColor="@color/md_theme_onPrimary"
+                android:layout_centerInParent="true"/>
+
+        </RelativeLayout>
+
+
+        <!-- RecyclerView for displaying the list of items -->
+        <TextView
+            android:id="@+id/emptyView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/header"
+            android:layout_marginTop="7dp"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="@string/inventory_empty"
+            android:textColor="@color/md_theme_onPrimary"
+            android:textSize="24sp"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/emptyView"
+            android:layout_above="@+id/fabAddItem"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"/>
+
+        <include layout="@layout/footer_layout" />
+
+        <!-- Floating Action Button for adding new items -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAddItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_above="@id/footer"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="@string/product_add"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
+    </RelativeLayout>
+
+    <!-- Footer Layout -->
+    <include layout="@layout/footer_layout" />
+
+</RelativeLayout>

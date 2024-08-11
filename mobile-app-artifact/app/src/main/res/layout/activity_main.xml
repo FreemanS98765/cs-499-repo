@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="2dp"
+    android:outlineSpotShadowColor="@color/md_theme_onBackground"
+    android:paddingBottom="30dp">
+
+    <!-- Upper background section -->
+    <View
+        android:id="@+id/upperBackground"
+        android:layout_width="0dp"
+        android:layout_height="350dp"
+        android:background="@color/md_theme_primary"
+        app:layout_constraintBottom_toTopOf="@+id/lowerBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Lower background section -->
+    <View
+        android:id="@+id/lowerBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/md_theme_surface"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upperBackground" />
+
+    <!-- Login card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/loginCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/card_shadow"
+        android:padding="16dp"
+        android:radius="6dp"
+        android:translationY="-64dp"
+        app:cardBackgroundColor="@color/md_theme_inverseSurface"
+        app:cardElevation="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/lowerBackground">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="72dp"
+            android:background="@color/md_theme_surface">
+
+            <!-- Login title inside the card -->
+            <TextView
+                android:id="@+id/loginTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/login_title"
+                android:textAlignment="center"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Email input field -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/emailInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/loginTitle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_bottom_border"
+                    android:hint="@string/email_hint"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Password input field -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/passwordInputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:boxBackgroundColor="@color/md_theme_surfaceDim"
+                app:boxCornerRadiusTopEnd="32dp"
+                app:boxCornerRadiusTopStart="32dp"
+                app:boxStrokeColor="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailInputLayout">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_bottom_border"
+                    android:hint="@string/password_hint"
+                    android:inputType="textPassword"
+                    android:paddingStart="8dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="16dp"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Login button -->
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/button_background"
+        android:text="@string/login_button"
+        android:textSize="16sp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:textAlignment="center"
+        android:textColor="@color/md_theme_onPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginCard"
+        android:translationY="-116dp"
+        android:elevation="10dp"/>
+
+    <!-- Registration link -->
+    <TextView
+        android:id="@+id/registerLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/register_link"
+        android:textColor="@color/md_theme_primary"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton"
+        android:translationY="-90dp"/>
+
+    <!-- Footer text -->
+    <TextView
+        android:id="@+id/footerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/copyright"
+        android:textColor="@color/md_theme_onSurfaceVariant"
+        android:layout_marginBottom="16dp"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
