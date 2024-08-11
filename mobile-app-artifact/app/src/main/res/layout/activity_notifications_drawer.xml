@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/notifications"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_theme_surface">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/footer">
+
+        <!-- Header Section -->
+        <LinearLayout
+            android:id="@+id/navHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="@color/md_theme_inversePrimary">
+
+            <!-- Notification Status TextView -->
+            <TextView
+                android:id="@+id/textViewNotificationStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="@string/notifications_disabled_msg" />
+
+            <!-- Toggle Button for enabling notifications -->
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch_enable_notifications"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <!-- Body Section -->
+        <LinearLayout
+            android:id="@+id/body"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/navHeader"
+            android:layout_marginTop="0dp"
+            android:orientation="vertical"
+            android:background="@color/md_theme_surface"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/no_notifications_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/no_notifications_msg"
+                android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/notifications_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <include layout="@layout/footer_layout" />
+
+
+</RelativeLayout>
