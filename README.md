@@ -1,3 +1,7 @@
+[README](README.md) | [Software Design & Engineering](/ENHANCEMENTS/Software_Design_Engineering.md) | [Data Structures & Algorithms](/ENHANCEMENTS/Data_Structures_Algorithms.md) | [Databases](/ENHANCEMENTS/Databases.md)
+
+---
+
 # Inventory Management MEAN Application
 
 This is a full-stack Inventory Management application built using the MEAN (MongoDB, Express.js, Angular, Node.js) stack.
