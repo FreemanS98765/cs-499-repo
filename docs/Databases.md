@@ -1,10 +1,15 @@
-[README](../README.md) | [Software Design & Engineering](Software_Design_Engineering.md) | [Data Structures & Algorithms](Data_Structures_Algorithms.md) | [Databases](Databases.md)
+[Home](/docs/index.md) | [Database Narrative](/docs/Freeman%20Sands%20CS%20499%20Databases%20Narrative.docx)
 
 ---
 
 # Databases Enhancements
 
 This document outlines the enhancements made in the area of databases during the migration of the Inventory Management System from an Android application to a MEAN stack web application.
+
+## Database Narrative
+You can read the Database narrative [here](/docs/Freeman%20Sands%20CS%20499%20Databases%20Narrative.docx)
+
+---
 
 ## 1. Migration to MongoDB
 

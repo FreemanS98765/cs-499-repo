@@ -1,10 +1,15 @@
-[README](../README.md) | [Software Design & Engineering](Software_Design_Engineering.md) | [Data Structures & Algorithms](Data_Structures_Algorithms.md) | [Databases](Databases.md)
+[Home](/docs/index.md) | [Data Structures & Algorithms Narrative](/docs/Freeman%20Sands%20CS%20499%20Algorithms%20and%20Data%20Structures%20Narrative.docx)
 
 ---
 
 # Data Structures & Algorithms Enhancements
 
 This document outlines the enhancements made in the area of data structures and algorithms during the migration of the Inventory Management System from an Android application to a MEAN stack web application.
+
+## Data Structures & Algorithms Narrative
+You can read the Data Structures & Algorithms narrative [here](/docs/Freeman%20Sands%20CS%20499%20Algorithms%20and%20Data%20Structures%20Narrative.docx)
+
+---
 
 ## 1. Migration from SQLite to MongoDB
 

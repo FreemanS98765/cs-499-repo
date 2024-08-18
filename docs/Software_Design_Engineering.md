@@ -1,10 +1,15 @@
-[README](../README.md) | [Software Design & Engineering](Software_Design_Engineering.md) | [Data Structures & Algorithms](Data_Structures_Algorithms.md) | [Databases](Databases.md)
+[Home](/docs/index.md) | [Software Design & Engineering Narrative](/docs/Freeman%20Sands%20CS%20499%20Software%20Design%20Narrative.docx)
 
 ---
 
 # Software Design & Engineering Enhancements
 
 This document outlines the enhancements made in the area of software design and engineering during the migration of the Inventory Management System from an Android application to a MEAN stack web application.
+
+## Software Design & Engineering Narrative
+You can read the Software Design & Engineering narrative [here](/docs/Freeman%20Sands%20CS%20499%20Software%20Design%20Narrative.docx)
+
+---
 
 ## 1. Separation of Concerns
 
