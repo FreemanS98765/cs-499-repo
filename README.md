@@ -49,10 +49,12 @@ Found in app.js in project root.
 ```
 const cors = require('cors');
 app.use(
+  "/api",
   cors({
-    origin: "http://localhost:4200",
-    optionsSuccessStatus: 200,
-  })
+    origin: "http://localhost:4200", // Allow requests from this origin
+    optionsSuccessStatus: 200, // Success status for preflight requests
+  }),
+  apiRouter
 );
 ```
 
