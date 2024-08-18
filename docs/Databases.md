@@ -1,4 +1,4 @@
-[Home](/docs/index.md) | [Database Narrative](/docs/Freeman%20Sands%20CS%20499%20Databases%20Narrative.docx)
+[Home](https://freemans98765.github.io/cs-499-repo/) | [Database Narrative](https://github.com/FreemanS98765/cs-499-repo/tree/master/docs/Freeman%20Sands%20CS%20499%20Databases%20Narrative.docx)
 
 ---
 
@@ -7,7 +7,7 @@
 This document outlines the enhancements made in the area of databases during the migration of the Inventory Management System from an Android application to a MEAN stack web application.
 
 ## Database Narrative
-You can read the Database narrative [here](/docs/Freeman%20Sands%20CS%20499%20Databases%20Narrative.docx)
+You can read the Database narrative [here](https://github.com/FreemanS98765/cs-499-repo/tree/master/docs/Freeman%20Sands%20CS%20499%20Databases%20Narrative.docx)
 
 ---
 

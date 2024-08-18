@@ -1,4 +1,4 @@
-[Home](/docs/index.md)
+[Home](https://freemans98765.github.io/cs-499-repo/)
 
 ---
 

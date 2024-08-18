@@ -1,4 +1,4 @@
-[Home](/docs/index.md) | [Data Structures & Algorithms Narrative](/docs/Freeman%20Sands%20CS%20499%20Algorithms%20and%20Data%20Structures%20Narrative.docx)
+[Home](https://freemans98765.github.io/cs-499-repo/) | [Data Structures & Algorithms Narrative](https://github.com/FreemanS98765/cs-499-repo/tree/master/docs/Freeman%20Sands%20CS%20499%20Algorithms%20and%20Data%20Structures%20Narrative.docx)
 
 ---
 
@@ -7,7 +7,7 @@
 This document outlines the enhancements made in the area of data structures and algorithms during the migration of the Inventory Management System from an Android application to a MEAN stack web application.
 
 ## Data Structures & Algorithms Narrative
-You can read the Data Structures & Algorithms narrative [here](/docs/Freeman%20Sands%20CS%20499%20Algorithms%20and%20Data%20Structures%20Narrative.docx)
+You can read the Data Structures & Algorithms narrative [here](https://github.com/FreemanS98765/cs-499-repo/tree/master/docs/Freeman%20Sands%20CS%20499%20Algorithms%20and%20Data%20Structures%20Narrative.docx)
 
 ---
 
