@@ -13,9 +13,12 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthService } from '../../core/services/auth.service';
 
 /**
- * Component for creating a new product.
+ * @class CreateProductComponent
+ * @classdesc Component for creating a new product in the inventory management system.
  *
- * This component provides a form to create a new product with fields for name, SKU, and quantity.
+ * This component provides a form that allows the user to input product details, including the name, SKU,
+ * and quantity. Upon submission, the product is added to the inventory, and a notification is displayed.
+ * The component can also be closed without submitting the form.
  */
 @Component({
   selector: 'app-create-product',
@@ -35,18 +38,18 @@ import { AuthService } from '../../core/services/auth.service';
 })
 export class CreateProductComponent {
   /**
-   * Form group for creating a product.
+   * @property {FormGroup} createProductForm - The form group for the product creation form.
    */
   createProductForm: FormGroup;
 
   /**
-   * Constructor to initialize the form builder and dialog reference.
-   *
+   * @constructor
+   * @description Initializes the component with required services and form controls.
    * @param {FormBuilder} fb - The FormBuilder service to create form controls.
-   * @param {MatDialogRef<CreateProductComponent>} dialogRef - Reference to the dialog opened.
-   * @param {InventoryService} inventoryService - Service to manage inventory data.
-   * @param {MatSnackBar} snackBar - Service to display snack bar messages.
-   * @param {AuthService} authService - Service to manage authentication.
+   * @param {MatDialogRef<CreateProductComponent>} dialogRef - Reference to the dialog instance.
+   * @param {InventoryService} inventoryService - Service to interact with inventory-related operations.
+   * @param {MatSnackBar} snackBar - Service to display snack bar notifications.
+   * @param {AuthService} authService - Service to handle user authentication and authorization.
    */
   constructor(
     private fb: FormBuilder,
@@ -64,9 +67,9 @@ export class CreateProductComponent {
   }
 
   /**
-   * Handle form submission.
-   *
-   * This method sends the form values to the server and closes the dialog.
+   * @method onSubmit
+   * @description Handles the submission of the product creation form.
+   * If the form is valid, the new product is added to the inventory, and a success message is displayed.
    */
   onSubmit(): void {
     if (this.createProductForm.valid) {
@@ -87,9 +90,8 @@ export class CreateProductComponent {
   }
 
   /**
-   * Handle form cancellation.
-   *
-   * This method closes the dialog without submitting the form.
+   * @method onCancel
+   * @description Closes the dialog without submitting the form.
    */
   onCancel(): void {
     this.dialogRef.close();

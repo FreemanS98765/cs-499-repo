@@ -33,14 +33,20 @@ import { AuthService } from '../../core/services/auth.service';
   host: { class: 'notifications-view' },
 })
 export class NotificationsComponent implements OnInit {
-  /** Indicates whether notifications are enabled or disabled */
+  /** @property {boolean} notificationsState - Indicates whether notifications are enabled or disabled. */
   notificationsState: boolean = true;
 
-  /** Notifications data */
+  /** @property {Notification[]} notifications - Stores the list of notifications retrieved from the server. */
   notifications: Notification[] = [];
 
+  /** @property {string} userId - Stores the current user's ID. */
   userId: string;
 
+  /**
+   * @constructor
+   * @param {NotificationService} notificationService - The service for managing notifications.
+   * @param {AuthService} authService - The service for managing authentication and user information.
+   */
   constructor(
     private notificationService: NotificationService,
     private authService: AuthService
@@ -48,13 +54,18 @@ export class NotificationsComponent implements OnInit {
     this.userId = this.authService.getUserId();
   }
 
+  /**
+   * @method ngOnInit
+   * @description Lifecycle hook that is called after data-bound properties of a directive are initialized. Used to load initial data.
+   */
   ngOnInit(): void {
     this.loadNotifications();
     this.loadNotificationState();
   }
 
   /**
-   * Loads notifications data.
+   * @method loadNotifications
+   * @description Fetches the list of notifications from the server.
    */
   loadNotifications(): void {
     this.notificationService.getNotifications().subscribe(
@@ -68,15 +79,16 @@ export class NotificationsComponent implements OnInit {
   }
 
   /**
-   * Loads the notification state.
+   * @method loadNotificationState
+   * @description Retrieves the current notification state from local storage.
    */
   loadNotificationState(): void {
     this.notificationsState = this.authService.getNotificationsState();
   }
 
   /**
-   * Toggles the notifications state.
-   *
+   * @method toggleNotifications
+   * @description Toggles the notifications state on or off based on user input.
    * @param {any} event - The event object containing the toggle state.
    */
   toggleNotifications(event: any): void {
@@ -95,8 +107,8 @@ export class NotificationsComponent implements OnInit {
   }
 
   /**
-   * Deletes a notification by ID.
-   *
+   * @method deleteNotification
+   * @description Deletes a specific notification by its ID.
    * @param {string} id - The ID of the notification to be deleted.
    */
   deleteNotification(id: string): void {

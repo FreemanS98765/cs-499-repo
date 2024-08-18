@@ -40,17 +40,18 @@ import { RouterLink } from '@angular/router';
   host: { class: 'dashboard-view' },
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
-  /** Array of inventory items */
+  /** @property {InventoryItem[]} inventory - Array of inventory items. */
   inventory: InventoryItem[] = [];
 
-  /** Columns to be displayed in the table */
+  /** @property {string[]} displayedColumns - Columns to be displayed in the table. */
   displayedColumns: string[] = ['name', 'sku', 'quantity', 'actions'];
 
-  /** Data source for the table */
+  /** @property {MatTableDataSource<InventoryItem>} dataSource - Data source for the table. */
   dataSource = new MatTableDataSource<InventoryItem>(this.inventory);
 
   /**
-   * Constructor to inject required services.
+   * @constructor
+   * @description Constructor to inject required services.
    *
    * @param {InventoryService} inventoryService - Service to manage inventory data.
    * @param {MatDialog} dialog - Service to manage dialogs.
@@ -64,25 +65,28 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private snackBar: MatSnackBar
   ) {}
 
-  /** ViewChild to access the table sorting directive */
+  /** @property {MatSort} sort - ViewChild to access the table sorting directive. */
   @ViewChild(MatSort) sort!: MatSort;
 
   /**
-   * OnInit lifecycle hook to load inventory on component initialization.
+   * @method ngOnInit
+   * @description OnInit lifecycle hook to load inventory on component initialization.
    */
   ngOnInit(): void {
     this.loadInventory();
   }
 
   /**
-   * AfterViewInit lifecycle hook to set the table sorting after the view is initialized.
+   * @method ngAfterViewInit
+   * @description AfterViewInit lifecycle hook to set the table sorting after the view is initialized.
    */
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
   }
 
   /**
-   * Load inventory items from the service.
+   * @method loadInventory
+   * @description Load inventory items from the service.
    */
   loadInventory(): void {
     this.inventoryService.getInventory().subscribe(
@@ -97,7 +101,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * Open the create product dialog.
+   * @method openCreateProductDialog
+   * @description Open the create product dialog.
    */
   openCreateProductDialog(): void {
     const dialogRef = this.dialog.open(CreateProductComponent, {
@@ -113,7 +118,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * Toggle edit mode for an inventory item.
+   * @method toggleEditMode
+   * @description Toggle edit mode for an inventory item.
    *
    * @param {InventoryItem} item - The inventory item to toggle edit mode.
    */
@@ -122,7 +128,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * Save an inventory item.
+   * @method saveItem
+   * @description Save an inventory item.
    *
    * @param {InventoryItem} item - The inventory item to save.
    */
@@ -139,7 +146,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * Delete the specified inventory item.
+   * @method deleteItem
+   * @description Delete the specified inventory item.
    *
    * @param {InventoryItem} item - The inventory item to delete.
    */
@@ -156,7 +164,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * Announce item update for accessibility.
+   * @method announceItemUpdate
+   * @description Announce item update for accessibility.
    *
    * @param {InventoryItem} item - The inventory item that was updated.
    */
@@ -165,7 +174,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * Announce item delete for accessibility.
+   * @method announceItemDelete
+   * @description Announce item delete for accessibility.
    *
    * @param {InventoryItem} item - The inventory item that was deleted.
    */
@@ -174,7 +184,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   /**
-   * Announce sort change for accessibility.
+   * @method announceSortChange
+   * @description Announce sort change for accessibility.
    *
    * @param {Sort} sortState - The new sort state.
    */

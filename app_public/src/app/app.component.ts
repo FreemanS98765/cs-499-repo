@@ -6,8 +6,9 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 
 /**
  * @title App Component
- * 
- * This is the root component of the application, which includes the header and footer components and manages routing.
+ *
+ * @description This is the root component of the application. It serves as the main container for the application and includes
+ * the header and footer components. It also manages the routing within the application.
  */
 @Component({
   selector: 'app-root',
@@ -23,13 +24,14 @@ import { FooterComponent } from './shared/components/footer/footer.component';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  /** The title of the application */
+  /** @property {string} title - The title of the application */
   title = 'inventory-management-app-public';
 
   /**
-   * Constructor to inject the Router service.
-   * 
-   * @param {Router} router - The Angular Router service.
+   * @constructor
+   * @description Constructor to inject the Router service.
+   *
+   * @param {Router} router - The Angular Router service, used to manage navigation within the application.
    */
   constructor(public router: Router) {}
 }

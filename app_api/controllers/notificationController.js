@@ -2,7 +2,14 @@
 const Notification = require("../models/Notification");
 const User = require("../models/User");
 
-// Get all notifications
+
+/**
+ * Retrieves all notifications from the database.
+ * 
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object for sending back the list of notifications.
+ * @returns {void}
+ */
 exports.getNotifications = async (req, res) => {
   try {
     const notifications = await Notification.find();
@@ -12,7 +19,13 @@ exports.getNotifications = async (req, res) => {
   }
 };
 
-// Add a notification
+/**
+ * Adds a new notification to the database.
+ * 
+ * @param {Object} req - The request object containing the notification message.
+ * @param {Object} res - The response object for sending back the newly created notification.
+ * @returns {void}
+ */
 exports.addNotification = async (req, res) => {
   const { msg } = req.body;
 
@@ -29,7 +42,13 @@ exports.addNotification = async (req, res) => {
   }
 };
 
-// Delete a notification
+/**
+ * Deletes a notification by its ID from the database.
+ * 
+ * @param {Object} req - The request object containing the notification ID in params.
+ * @param {Object} res - The response object for sending back the deletion confirmation.
+ * @returns {void}
+ */
 exports.deleteNotification = async (req, res) => {
   try {
     const notification = await Notification.findByIdAndDelete(req.params.id);
@@ -47,6 +66,13 @@ exports.deleteNotification = async (req, res) => {
   }
 };
 
+/**
+ * Toggles the notification settings for a user.
+ * 
+ * @param {Object} req - The request object containing the userId and notificationsEnabled status.
+ * @param {Object} res - The response object for sending back the update confirmation.
+ * @returns {void}
+ */
 exports.toggleNotifications = async (req, res) => {
   try {
     const { userId, notificationsEnabled } = req.body;
@@ -60,7 +86,6 @@ exports.toggleNotifications = async (req, res) => {
     await user.save();
     res.status(200).json({ msg: "Notifications state updated successfully" });
   } catch (err) {
-    console.error(err.message);
     res.status(500).send("Server error");
   }
 };

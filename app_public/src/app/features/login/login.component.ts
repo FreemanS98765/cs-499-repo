@@ -51,12 +51,14 @@ export class LoginComponent implements OnInit {
   }
 
   /**
-   * Lifecycle method to initialize the component.
+   * @method ngOnInit
+   * @description Lifecycle method to initialize the component. 
    */
   ngOnInit(): void {}
 
   /**
-   * Handle form submission to log the user in.
+   * @method onSubmit
+   * @description Handle form submission to log the user in.
    *
    * This method checks if the form is valid, and then calls the AuthService to authenticate the user.
    * If authentication is successful, it navigates to the dashboard. Otherwise, it shows an error message.
