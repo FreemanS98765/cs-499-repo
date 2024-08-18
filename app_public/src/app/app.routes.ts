@@ -7,7 +7,7 @@ import { RegistrationComponent } from './features/registration/registration.comp
 /**
  * @title App Routes
  *
- * This file defines the routes for the application.
+ * @description This file defines the routes for the application.
  */
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },

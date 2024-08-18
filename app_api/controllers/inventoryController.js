@@ -3,7 +3,14 @@ const Notification = require("../models/Notification");
 const smsService = require("../../app_server/services/smsService");
 const User = require("../models/User");
 
-// Add an inventory item
+/**
+ * Adds a new inventory item to the database.
+ * If the user has notifications enabled, it triggers a notification and sends an SMS.
+ * 
+ * @param {Object} req - The request object containing item details and userId.
+ * @param {Object} res - The response object for sending back the appropriate response.
+ * @returns {void}
+ */
 exports.addInventoryItem = async (req, res) => {
   try {
     const { name, sku, quantity, userId } = req.body; // Retrieve userId from the request body
@@ -31,7 +38,13 @@ exports.addInventoryItem = async (req, res) => {
   }
 };
 
-// Get all inventory items
+/**
+ * Retrieves all inventory items from the database.
+ * 
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object for sending back the list of items.
+ * @returns {void}
+ */
 exports.getInventory = async (req, res) => {
   try {
     const items = await InventoryItem.find();
@@ -41,7 +54,13 @@ exports.getInventory = async (req, res) => {
   }
 };
 
-// Get a single inventory item by ID
+/**
+ * Retrieves a single inventory item by its ID.
+ * 
+ * @param {Object} req - The request object containing the item ID in params.
+ * @param {Object} res - The response object for sending back the item details.
+ * @returns {void}
+ */
 exports.getInventoryById = async (req, res) => {
   try {
     const item = await InventoryItem.findById(req.params.id);
@@ -54,7 +73,14 @@ exports.getInventoryById = async (req, res) => {
   }
 };
 
-// Update an inventory item
+/**
+ * Updates an existing inventory item by its ID.
+ * If the user has notifications enabled, it triggers a notification and sends an SMS.
+ * 
+ * @param {Object} req - The request object containing the updated item details and userId.
+ * @param {Object} res - The response object for sending back the updated item details.
+ * @returns {void}
+ */
 exports.updateInventory = async (req, res) => {
   try {
     const { userId } = req.body; // Ensure userId is passed in the request body
@@ -87,7 +113,14 @@ exports.updateInventory = async (req, res) => {
   }
 };
 
-// Delete an inventory item
+/**
+ * Deletes an inventory item by its ID.
+ * If the user has notifications enabled, it triggers a notification and sends an SMS.
+ * 
+ * @param {Object} req - The request object containing the item ID and userId.
+ * @param {Object} res - The response object for sending back the deletion confirmation.
+ * @returns {void}
+ */
 exports.deleteInventory = async (req, res) => {
   try {
     const { userId } = req.body; // Ensure userId is passed in the request body

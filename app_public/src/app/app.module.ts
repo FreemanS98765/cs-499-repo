@@ -18,7 +18,8 @@ import { routes } from './app.routes';
 /**
  * @title App Module
  * 
- * This module serves as the root module for the application. It imports necessary modules and declares the main components.
+ * @description This module serves as the root module for the application. It imports necessary Angular modules 
+ * and declares the main components that make up the application.
  */
 @NgModule({
   declarations: [
